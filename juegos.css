@@ -1,0 +1,100 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.a {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .a:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.games-section {
+    padding: 50px 0;
+    background-color: #f4f4f9;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.section-description {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #666;
+}
+
+.games-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.game-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+}
+
+.game-image {
+    width: 100%;
+    height: auto;
+}
+
+.game-title {
+    font-size: 1.5em;
+    margin: 15px;
+    color: #333;
+}
+
+.game-description {
+    font-size: 1em;
+    margin: 0 15px 15px;
+    color: #777;
+}
+
+.play-button {
+    display: block;
+    text-align: center;
+    background-color: #ff5722;
+    color: #fff;
+    padding: 10px 15px;
+    margin: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.play-button:hover {
+    background-color: #e64a19;
+}

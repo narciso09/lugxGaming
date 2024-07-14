@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMaster Diario</title>
+    <link rel="stylesheet" href="codigos.css">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input, textarea { padding: 10px; font-size: 16px; margin-bottom: 10px; width: 300px; }
+        button { padding: 10px 20px; font-size: 16px; }
+        #response { margin-top: 20px; font-size: 18px; }
+        #googleForm { display: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <a href="juegos.html">atras</a>
+    <h1>CodeMaster Diario</h1>
+    <input type="text" id="codeInput" placeholder="Ingresa el código diario">
+    <button onclick="checkCode()">Verificar</button>
+    <div id="response"></div>
+    <button onclick="checkWeeklyCodes()">Enviar Códigos de la Semana</button>
+    <div id="weeklyResponse"></div>
+    <div id="progress"></div>
+
+    <div id="googleForm">
+        <h2>¡Felicidades! Has encontrado todos los códigos de la semana.</h2>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSem4xydaTuAAP0x3l83TvRP6RbpLH2k8vwZ_HMgJyWlOLKsWQ/viewform?usp=pp_url" width="600" height="700" frameborder="0" marginheight="0" marginwidth="0">Cargando...</iframe>
+    </div>
+
+    <script>
+        // Lista de códigos asociados a fechas específicas (varios códigos por día)
+        const dailyCodes = {
+            
+            "20240714": ["CODIGO3", "CODIGO4"],
+            
+        };
+
+        // Función para obtener la fecha actual en formato YYYYMMDD
+        function getCurrentDate() {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = ('0' + (date.getMonth() + 1)).slice(-2);
+            const day = ('0' + date.getDate()).slice(-2);
+            return `${year}${month}${day}`;
+        }
+
+        // Función para verificar el código ingresado
+        function checkCode() {
+            const input = document.getElementById("codeInput").value;
+            const response = document.getElementById("response");
+            const currentDate = getCurrentDate();
+
+            // Verifica si hay códigos para la fecha actual y si el código ingresado es válido
+            if (dailyCodes[currentDate] && dailyCodes[currentDate].includes(input)) {
+                response.textContent = "¡Correcto! Ese es uno de los códigos del día.";
+                
+                // Guarda el código en el local storage
+                let foundCodes = JSON.parse(localStorage.getItem('foundCodes')) || {};
+                if (!foundCodes[currentDate]) {
+                    foundCodes[currentDate] = [];
+                }
+                if (!foundCodes[currentDate].includes(input)) {
+                    foundCodes[currentDate].push(input);
+                    localStorage.setItem('foundCodes', JSON.stringify(foundCodes));
+                }
+                updateProgress();
+            } else {
+                response.textContent = "Incorrecto. Intenta de nuevo.";
+            }
+            document.getElementById("codeInput").value = "";
+        }
+
+        // Función para actualizar el progreso
+        function updateProgress() {
+            const foundCodes = JSON.parse(localStorage.getItem('foundCodes')) || {};
+            const weekDates = Object.keys(dailyCodes).slice(0, 7);
+            let totalCodes = 0;
+            let foundTotal = 0;
+
+            for (const date of weekDates) {
+                totalCodes += (dailyCodes[date] || []).length;
+                foundTotal += (foundCodes[date] || []).length;
+            }
+
+            document.getElementById("progress").textContent = `Has encontrado ${foundTotal} de ${totalCodes} códigos. Te faltan ${totalCodes - foundTotal} códigos.`;
+        }
+
+        // Función para verificar si se encontraron todos los códigos de la semana
+        function checkWeeklyCodes() {
+            const weeklyResponse = document.getElementById("weeklyResponse");
+            const foundCodes = JSON.parse(localStorage.getItem('foundCodes')) || {};
+            const weekDates = Object.keys(dailyCodes).slice(0, 7); // Obtiene las fechas de la semana
+
+            let allCodesFound = true;
+            for (const date of weekDates) {
+                if (!foundCodes[date] || foundCodes[date].length !== dailyCodes[date].length) {
+                    allCodesFound = false;
+                    break;
+                }
+            }
+
+            if (allCodesFound) {
+                weeklyResponse.textContent = "¡Felicidades! Has encontrado todos los códigos de la semana.";
+                document.getElementById("googleForm").style.display = "block"; // Muestra el formulario de Google Forms
+                localStorage.removeItem('foundCodes'); // Reinicia el progreso después de enviar los códigos
+                updateProgress();
+            } else {
+                weeklyResponse.textContent = "Aún no has encontrado todos los códigos de la semana. Sigue buscando.";
+            }
+        }
+
+        // Actualiza el progreso al cargar la página
+        updateProgress();
+    </script>
+</body>
+</html>
