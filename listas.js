@@ -48,7 +48,7 @@ function showCode() {
         currentIndex++;
         localStorage.setItem('currentIndex', currentIndex.toString());
         
-        nextAvailableTime = now + 1200; // Tiempo de espera en segundos
+        nextAvailableTime = now + 600; // Tiempo de espera en segundos
         localStorage.setItem('nextAvailableTime', nextAvailableTime.toString());
 
         disableButtonTemporarily(nextAvailableTime - now);
