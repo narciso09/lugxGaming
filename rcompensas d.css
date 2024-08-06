@@ -1,0 +1,114 @@
+/* Estilos generales para la página del juego de números */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+  
+a.back-to-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+  
+a.back-to-home:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+  
+/* Contenedor del número */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+  
+.number-display {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    font-weight: bold;
+    background-color: #4c77af;
+    color: white;
+    border-radius: 50%;
+    border: 10px solid #007bff;
+    margin-bottom: 20px;
+    transition: transform 0.5s ease-in-out;
+}
+  
+/* Estilo para el botón de generar número */
+#playNumberButton {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+  
+#playNumberButton:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Estilos para la lista de resultados */
+.results-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+.results-list li {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.results-list li.highlighted {
+    background-color: #d4edda;
+    color: #155724;
+    transform: scale(1.02);
+}
+
+.results-list li:hover {
+    background-color: #f0f8ff;
+    transform: scale(1.01);
+}
+
+.points {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Encabezado de la lista */
+h2 {
+    font-size: 1.5em;
+    color: #333;
+    border-bottom: 2px solid #4c77af;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
