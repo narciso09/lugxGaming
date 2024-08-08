@@ -57,7 +57,7 @@ function obtenerPuntos() {
     }
   
     // Verificar el límite de juegos diarios
-    if (obtenerJuegosHoy() >= 5) {
+    if (obtenerJuegosHoy() >= 100) {
       alert('Has alcanzado el límite de 5 juegos por hoy.');
       return;
     }
